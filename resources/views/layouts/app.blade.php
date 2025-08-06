@@ -12,6 +12,13 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+         <!-- ✅ jQuery (must come BEFORE Select2) -->
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Tom Select CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+
+
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -34,5 +41,7 @@
                 {{ $slot }}
             </main>
         </div>
+        <!-- Tom Select JS -->
+
     </body>
 </html>

@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Services;
-use App\Models\Tasks;
 use App\Models\Tag;
-class TaskService
+class TagService
 {
     /**
      * Create a new class instance.
@@ -15,7 +14,7 @@ class TaskService
 
     public function createTask(array $data)
     {
-        return Tasks::create($data);
+        return Tag::firstOrCreate($data);
     }
 
     public function updateTask(Task $task, array $data)
@@ -29,13 +28,13 @@ class TaskService
         return $task->delete();
     }
 
-    public function getAllTasks()
+    public function getAllTag()
     {
-        return Tasks::all();
+        return Tag::all();
     }
 
     public function getTaskById(int $taskId)
     {
-        return Tasks::find($taskId);
+        return Tag::find($taskId);
     }
 }

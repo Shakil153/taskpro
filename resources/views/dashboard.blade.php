@@ -52,6 +52,26 @@
             </div>
         </div>
     </nav> -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <!-- <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-tasks text-white text-lg"></i>
+                    </div> -->
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Organize your work efficiently</p>
+                    </div>
+                </div>
+                <button onclick="toggleDarkMode()" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 flex items-center justify-center">
+                    <i class="fas fa-moon dark:hidden text-sm"></i>
+                    <i class="fas fa-sun hidden dark:block text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-6">

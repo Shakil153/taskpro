@@ -1,13 +1,55 @@
 <x-app-layout>
-  
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 2s infinite;
+        }
+        .modal-overlay {
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .modal-enter {
+            animation: modalEnter 0.3s ease-out;
+        }
+        .modal-exit {
+            animation: modalExit 0.3s ease-in;
+        }
+        @keyframes modalEnter {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        @keyframes modalExit {
+            from {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+        }
+    </style>
+
+    <!-- Header -->
     <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
+                    <!-- <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
                         <i class="fas fa-tasks text-white text-lg"></i>
-                    </div>
+                    </div> -->
                     <div>
                         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Task Manager</h1>
                         <p class="text-sm text-gray-500 dark:text-gray-400">Organize your work efficiently</p>
@@ -33,7 +75,7 @@
                             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">My Tasks</h2>
                             <p class="text-gray-600 dark:text-gray-300">Manage your daily activities</p>
                         </div>
-                        <button class="group bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center space-x-2">
+                        <button onclick="openTaskModal()" class="group bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center space-x-2">
                             <i class="fas fa-plus group-hover:rotate-180 transition-transform duration-300"></i>
                             <span>Add Task</span>
                         </button>
@@ -41,7 +83,7 @@
                 </div>
 
                 <!-- Task Items -->
-                <div class="space-y-4">
+                <div class="space-y-4" id="taskList">
                     <!-- Completed Task -->
                     <div class="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl border border-gray-100 dark:border-gray-700 hover:border-green-200 dark:hover:border-green-700 transition-all duration-300 overflow-hidden">
                         <div class="p-6">
@@ -263,7 +305,7 @@
                         Quick Actions
                     </h3>
                     <div class="space-y-3">
-                        <button class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-4 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105">
+                        <button onclick="openTaskModal()" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 px-4 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105">
                             <i class="fas fa-plus mr-2"></i>
                             Create New Task
                         </button>
@@ -305,4 +347,154 @@
             </div>
         </div>
     </div>
+
+    <!-- Add Task Modal -->
+    <div id="taskModal" class="fixed inset-0 z-50 modal-overlay hidden flex items-center justify-center p-4">
+        <div id="modalContent" class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <!-- Modal Header -->
+            <div class="sticky top-0 bg-white dark:bg-gray-800 rounded-t-3xl border-b border-gray-100 dark:border-gray-700 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
+                            <i class="fas fa-plus text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Add New Task</h2>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Create a new task to organize your work</p>
+                        </div>
+                    </div>
+                    <button onclick="closeTaskModal()" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-200 flex items-center justify-center">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <livewire:task.task-form />
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+
+    <script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            
+            // Save preference
+            const isDark = html.classList.contains('dark');
+            localStorage.setItem('darkMode', isDark);
+        }
+
+        // Load saved dark mode preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedMode = localStorage.getItem('darkMode');
+            if (savedMode === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+            
+            // Set today as default date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('taskDueDate').value = today;
+        });
+
+        // Modal functions
+        function openTaskModal() {
+            const modal = document.getElementById('taskModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            modalContent.classList.add('modal-enter');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus on first input
+            setTimeout(() => {
+                document.getElementById('taskTitle').focus();
+            }, 100);
+        }
+
+        function closeTaskModal() {
+            const modal = document.getElementById('taskModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.classList.remove('modal-enter');
+            modalContent.classList.add('modal-exit');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalContent.classList.remove('modal-exit');
+                document.body.style.overflow = 'auto';
+                
+                // Reset form
+                document.getElementById('taskForm').reset();
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('taskDueDate').value = today;
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('taskModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTaskModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !document.getElementById('taskModal').classList.contains('hidden')) {
+                closeTaskModal();
+            }
+        });
+    
+    new TomSelect("#taskCategory", {
+        create: true,       // allow new tags
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+    new TomSelect("#taskStatus", {
+        create: true,       // allow new tags
+        sortField: {
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+
+    new TomSelect("#taskAssignee", {
+        create: true,       // allow new tags
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+    new TomSelect("#taskTags", {
+        create: true,       // allow new tags
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+
+    new TomSelect("#taskProject", {
+        create: true,       // allow new tags
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+
+    new TomSelect("#taskClient", {
+        create: true,       // allow new tags
+        sortField: {
+            field: "text",
+            direction: "asc"
+        },
+        plugins: ['remove_button']
+    });
+
+    </script>
 </x-app-layout>
