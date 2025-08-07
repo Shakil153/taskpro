@@ -368,8 +368,19 @@
                     </button>
                 </div>
             </div>
+            
+           <div x-data="{}" x-init="
+                new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+            ">
+    <!-- Your modal code here -->
 
-            <livewire:task.task-form />
+    <livewire:task.task-form />
+</div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
@@ -410,6 +421,15 @@
             setTimeout(() => {
                 document.getElementById('taskTitle').focus();
             }, 100);
+
+        setTimeout(() => {
+                new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+                new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+            }, 200); // Small delay to ensure modal is fully rendered before initializing
         }
 
         function closeTaskModal() {
@@ -445,56 +465,28 @@
             }
         });
     
-    new TomSelect("#taskCategory", {
-        create: true,       // allow new tags
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
-    new TomSelect("#taskStatus", {
-        create: true,       // allow new tags
-        sortField: {
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
-
-    new TomSelect("#taskAssignee", {
-        create: true,       // allow new tags
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
-    new TomSelect("#taskTags", {
-        create: true,       // allow new tags
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
-
-    new TomSelect("#taskProject", {
-        create: true,       // allow new tags
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
-
-    new TomSelect("#taskClient", {
-        create: true,       // allow new tags
-        sortField: {
-            field: "text",
-            direction: "asc"
-        },
-        plugins: ['remove_button']
-    });
 
     </script>
+
+    <script>
+    document.addEventListener('livewire:load', function () {
+        // Initialize TomSelect once Livewire has finished loading
+        new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    });
+
+    // Reinitialize TomSelect when Livewire updates the DOM (like after form submission)
+    Livewire.on('taskFormUpdated', () => {
+        new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+        new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    });
+</script>
 </x-app-layout>

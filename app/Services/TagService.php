@@ -12,20 +12,20 @@ class TagService
         //
     }
 
-    public function createTask(array $data)
+    public function createTag(array $data)
     {
         return Tag::firstOrCreate($data);
     }
 
-    public function updateTask(Task $task, array $data)
+    public function updateTag(Tag $tag, array $data)
     {
-        $task->update($data);
-        return $task;
+        $tag->update($data);
+        return $tag;
     }
 
-    public function deleteTask(Task $task)
+    public function deleteTag(Tag $tag)
     {
-        return $task->delete();
+        return $tag->delete();
     }
 
     public function getAllTag()
@@ -33,8 +33,8 @@ class TagService
         return Tag::all();
     }
 
-    public function getTaskById(int $taskId)
+    public function getTagById(int $tagId)
     {
-        return Tag::find($taskId);
+        return Tag::find($tagId);
     }
 }

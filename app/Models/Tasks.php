@@ -27,11 +27,18 @@ class Tasks extends Model
         return $this->belongsTo(Category::class);
     }
     
-    public function client() {
-        return $this->belongsTo(Client::class);
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class, 'task_client', 'task_id', 'client_id');
+    }
+
+    public function assignees()
+    {
+        return $this->belongsToMany(User::class, 'task_user', 'task_id', 'user_id');
     }
     
     public function tags() {
         return $this->belongsToMany(Tag::class);
     }
+    
 }

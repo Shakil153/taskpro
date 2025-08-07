@@ -14,7 +14,7 @@ class StatusService
 
     public function createStatus(array $data)
     {
-        return Status::create($data);
+        return Status::firstOrCreate($data);
     }
 
     public function updateStatus(Status $status, array $data)

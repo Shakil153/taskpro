@@ -12,6 +12,10 @@ Route::view('task', 'task')
     ->middleware(['auth', 'verified'])
     ->name('task');
 
+Route::view('task-details', 'taskDetails')
+    ->middleware(['auth', 'verified'])
+    ->name('task.details');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
