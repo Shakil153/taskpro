@@ -1,5 +1,6 @@
 <!-- Modal Body -->
-<form id="taskForm" wire:submit.prevent="taskCreate" class="p-8 space-y-6">
+<div>
+<form id="taskForm" wire:submit="taskcreate" class="p-8 space-y-6">
                 <!-- Task Title -->
                 <div class="space-y-2">
                     <label class="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center">
@@ -52,9 +53,9 @@
                             Status
                         </label>
                         <select id="taskStatus" class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200" wire:model="status_id">
-                            <option value="pending" selected>Pending</option>
-                            <option value="in-progress">In Progress</option>
-                            <option value="completed">Completed</option>
+                            <option value="Pending" selected>Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
                         </select>
                     </div>
 
@@ -141,3 +142,4 @@
                     </button>
                 </div>
 </form>
+</div>

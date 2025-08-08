@@ -63,6 +63,18 @@
         </div>
     </div>
 
+    @if (session()->has('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <div class="max-w-7xl mx-auto p-6">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 h-full">
             
@@ -81,6 +93,7 @@
                         </button>
                     </div>
                 </div>
+                <livewire:task.task-list />
 
                 <!-- Task Items -->
                 <div class="space-y-4" id="taskList">
@@ -347,7 +360,6 @@
             </div>
         </div>
     </div>
-
     <!-- Add Task Modal -->
     <div id="taskModal" class="fixed inset-0 z-50 modal-overlay hidden flex items-center justify-center p-4">
         <div id="modalContent" class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700 w-full max-w-2xl max-h-[90vh] overflow-y-auto">

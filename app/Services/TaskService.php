@@ -38,4 +38,9 @@ class TaskService
     {
         return Tasks::find($taskId);
     }
+
+    public function getAllTasksWithStatus($relation)
+    {
+        return Tasks::with($relation);
+    }
 }

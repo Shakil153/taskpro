@@ -16,7 +16,7 @@ class Tasks extends Model
 
     // Optionally, specify other properties like fillable
     protected $fillable = [
-        'title', 'description', 'status'
+        'title', 'description', 'status_id','category_id', 'client_id', 'project_id', 'priority', 'due_date'
     ];
 
     public function status() {
