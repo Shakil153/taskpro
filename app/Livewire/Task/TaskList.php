@@ -15,6 +15,10 @@ class TaskList extends Component
     protected $utilityService;
 
     protected $paginationTheme = 'tailwind';
+    public $editingTaskId = null;
+    public $fieldBeingEdited = null;
+    public $fieldValue = null;
+    public $originalValue = null;
 
     public function boot()
     {
@@ -22,9 +26,49 @@ class TaskList extends Component
         $this->utilityService = app(UtilityService::class);
     }
 
+     public function mount()
+    {
+        $this->getTasksProperty();
+    }
+
+    public function startEditing($taskId, $field, $value)
+    {
+        $this->editingTaskId = $taskId;
+        $this->fieldBeingEdited = $field;
+        $this->fieldValue = $value;
+    }
+
+    public function cancelEdit()
+    {
+        $this->editingTaskId = null;
+        $this->fieldBeingEdited = null;
+        $this->fieldValue = null;
+        $this->originalValue = null;
+    }
+
+    public function saveEdit()
+    {
+        if ($this->fieldValue === $this->originalValue) {
+            $this->cancelEdit();
+            return;
+        }
+        // Ensure we have a valid task and field to edit
+        if (!$this->editingTaskId || !$this->fieldBeingEdited) return;
+
+        $task = $this->taskService->getTaskById($this->editingTaskId);
+        $task->{$this->fieldBeingEdited} = $this->fieldValue;
+        $task->save();
+
+        $this->editingTaskId = null;
+        $this->fieldBeingEdited = null;
+        $this->fieldValue = null;
+        $this->cancelEdit();
+        $this->getTasksProperty();
+    }
+
     public function getTasksProperty()
     {
-        $query = $this->taskService->getAllTasksWithStatus('status'); // Use correct relation name
+        $query = $this->taskService->getAllTasksWithStatus(['status']); // Use correct relation name
         return $query->paginate($this->utilityService::$displayRecordPerPage);
     }
 

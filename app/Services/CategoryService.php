@@ -28,7 +28,7 @@ class CategoryService
         return $category->delete();
     }
 
-    public function getAllCategory()
+    public function getAllCategories()
     {
         return Category::all();
     }

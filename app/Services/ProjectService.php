@@ -28,7 +28,7 @@ class ProjectService
         return $project->delete();
     }
 
-    public function getAllProject()
+    public function getAllProjects()
     {
         return Project::all();
     }

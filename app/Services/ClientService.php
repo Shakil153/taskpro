@@ -28,7 +28,7 @@ class ClientService
         return $client->delete();
     }
 
-    public function getAllClient()
+    public function getAllClients()
     {
         return Client::all();
     }

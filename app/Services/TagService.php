@@ -28,7 +28,7 @@ class TagService
         return $tag->delete();
     }
 
-    public function getAllTag()
+    public function getAllTags()
     {
         return Tag::all();
     }

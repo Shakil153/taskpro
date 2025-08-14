@@ -12,7 +12,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-class TaskForm extends Component
+class TaskFormModal extends Component
 {
     public $tasks;
     public $statusData;
@@ -31,6 +31,7 @@ class TaskForm extends Component
     protected $categoryService;
     protected $projectService;
     protected $clientService;
+
 
     public function __construct()
     {
@@ -51,7 +52,6 @@ class TaskForm extends Component
         $this->assigneeData = User::all(); // Assuming you have a User model to fetch all users
         $this->tagsData = $this->tagService->getAllTags();
     }
-
 
     public function taskcreate()
     {
@@ -153,6 +153,6 @@ class TaskForm extends Component
     }
     public function render()
     {
-        return view('livewire.task.task-form');
+        return view('livewire.task.task-form-modal');
     }
 }
