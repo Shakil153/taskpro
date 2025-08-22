@@ -1,94 +1,154 @@
 <div>
-   <div class="space-y-4" id="taskList">
+
+   <div class="space-y-2" id="taskList">
+   <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200 overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
+            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
+                    <i class="fas fa-list mr-2 text-indigo-500"></i>
+                    Active Tasks
+                    <span class="ml-2 px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-full">23</span>
+                </h2>
+            </div>
+
+            <!-- Compact Filter Bar -->
+            <div class="p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-600">
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- Search -->
+                    <div class="relative min-w-48 flex-1 max-w-xs">
+                        <i class="fas fa-search absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs"></i>
+                        <input type="text" 
+                               placeholder="Search tasks..." 
+                               class="w-full pl-8 pr-3 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 focus:border-transparent">
+                    </div>
+                    
+                    <!-- Compact Filters -->
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
+                        <option value="">Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in_progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
+                        <option value="">Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-24">
+                        <option value="">Project</option>
+                        <option value="website_redesign">Website Redesign</option>
+                        <option value="mobile_app">Mobile App</option>
+                        <option value="marketing_campaign">Marketing Campaign</option>
+                    </select>
+
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
+                        <option value="">Client</option>
+                        <option value="acme_corp">Acme Corp</option>
+                        <option value="tech_solutions">Tech Solutions</option>
+                        <option value="design_studio">Design Studio</option>
+                    </select>
+
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
+                        <option value="">Assignee</option>
+                        <option value="john_doe">John Doe</option>
+                        <option value="jane_smith">Jane Smith</option>
+                        <option value="unassigned">Unassigned</option>
+                    </select>
+
+                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
+                        <option value="">Due Date</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="today">Today</option>
+                        <option value="this_week">This Week</option>
+                        <option value="no_date">No Date</option>
+                    </select>
+                    
+                    <!-- Clear Filters Button -->
+                    <button class="px-2 py-1.5 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors min-w-14">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Active Filters Display -->
+                <div class="mt-2 flex flex-wrap gap-1.5" id="activeFilters">
+                    <!-- Sample active filters - these would be dynamically generated -->
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
+                        In Progress
+                        <button class="ml-1 hover:bg-indigo-200 dark:hover:bg-indigo-800 rounded p-0.5">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                    </span>
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                        High Priority
+                        <button class="ml-1 hover:bg-red-200 dark:hover:bg-red-800 rounded p-0.5">
+                            <i class="fas fa-times text-xs"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
     @foreach($tasks as $task)
-        <div class="group bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-xl border border-gray-100 dark:border-gray-700 transition-all duration-300 overflow-hidden">
-            <div class="p-6">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-start space-x-4 flex-1">
+        <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200 overflow-hidden">
+            <div class="p-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3 flex-1 min-w-0">
                         {{-- Status icon --}}
-                        <div class="flex-shrink-0 mt-1">
+                        <div class="flex-shrink-0">
                             @if($task->status->name === 'Completed')
-                                <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
                             @elseif($task->status->name === 'In progress')
-                                <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center animate-pulse-slow">
+                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
                                     <i class="fas fa-play text-white text-xs"></i>
                                 </div>
                             @else
-                                <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                                <div class="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center">
                                     <i class="fas fa-clock text-white text-xs"></i>
                                 </div>
                             @endif
                         </div>
+                        
                         <div class="flex-1 min-w-0">
-                           <div class="relative group mb-2">
-                                    {{-- Title display --}}
-                                    @if($editingTaskId === $task->id && $fieldBeingEdited === 'title')
-                                        <input type="text"
-                                            wire:model.defer="fieldValue"
-                                            wire:keydown.enter="saveEdit"
-                                            wire:keydown.escape="cancelEdit"
-                                            wire:blur="saveEdit"
-                                            class="border rounded px-2 py-1 w-full text-gray-900 dark:bg-gray-700 dark:text-white" />
-                                    @else
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white cursor-default">
-                                            <a href="{{ route('task.details', $task->id) }}" class="hover:underline">
+                            {{-- Title with inline editing --}}
+                            <div class="relative group/title">
+                                @if($editingTaskId === $task->id && $fieldBeingEdited === 'title')
+                                <div x-data @click.away="$wire.cancelEdit()">     
+                                    <input type="text"
+                                        wire:model.defer="fieldValue"
+                                        wire:keydown.enter="saveEdit"
+                                        wire:keydown.escape="cancelEdit"
+                                        wire:blur="saveEdit"
+                                        class="border rounded px-2 py-1 w-full text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white" />
+                                </div>
+                                @else
+                                    <div class="flex items-center group/title-hover">
+                                        <h3 class="text-sm font-medium text-gray-900 dark:text-white truncate pr-2">
+                                            <a href="{{ route('task.details', $task->id) }}" class="hover:text-blue-600 dark:hover:text-blue-400">
                                                 {{ $task->title }}
                                             </a>
                                         </h3>
-
-                                        {{-- Edit button, hidden by default, shown on hover --}}
                                         <button type="button"
                                             wire:click="startEditing({{ $task->id }}, 'title', '{{ addslashes($task->title) }}')"
-                                            class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 transition-colors duration-200 flex items-center justify-center absolute top-0 right-0 opacity-0 group-hover:opacity-100"
+                                            class="w-6 h-6 rounded bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 transition-colors duration-150 flex items-center justify-center opacity-0 group-hover/title-hover:opacity-100 ml-1"
                                             title="Edit Title">
                                             <i class="fas fa-edit text-xs"></i>
                                         </button>
-                                    @endif
-                            </div>
-                            {{-- Description --}}
-                            @if($editingTaskId === $task->id && $fieldBeingEdited === 'description')
-                                <textarea wire:model.defer="fieldValue"
-                                    wire:keydown.enter="saveEdit" wire:blur="saveEdit"
-                                    class="border rounded px-2 py-1 w-full text-sm text-gray-900 dark:bg-gray-700 dark:text-white"></textarea>
-                            @else
-                                <p class="text-gray-600 dark:text-gray-300 text-sm mb-3 cursor-pointer"
-                                   wire:click="startEditing({{ $task->id }}, 'description', '{{ addslashes($task->description) }}')">
-                                    {{ $task->description }}
-                                </p>
-                            @endif
-                            <div class="flex items-center justify-between">
-
-                                {{-- Status dropdown --}}
-                                @if($editingTaskId === $task->id && $fieldBeingEdited === 'status_id')
-                                    <select wire:model.defer="fieldValue"
-                                        wire:change="saveEdit"
-                                        class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white">
-                                        @foreach(App\Models\Status::all() as $status)
-                                            <option value="{{ $status->id }}">{{ $status->name }}</option>
-                                        @endforeach
-                                    </select>
-                                @else
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium cursor-pointer {{ $task->status->name === 'Completed' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}
-                                    {{ $task->status->name === 'In progress' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : '' }}
-                                    {{ $task->status->name === 'Pending' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : '' }}"
-                                        wire:click="startEditing({{ $task->id }}, 'status_id', '{{ $task->status_id }}')">
-                                        @if($task->status->name === 'Completed')
-                                        <i class="fas fa-check-circle mr-1 text-xs"></i> Completed
-                                        @elseif($task->status->name === 'In progress')
-                                            <i class="fas fa-spinner mr-1 text-xs animate-spin"></i> In Progress
-                                        @elseif($task->status->name === 'Pending')
-                                            <i class="fas fa-exclamation-triangle mr-1 text-xs"></i> Pending
-                                        @endif
-                                    </span>
+                                    </div>
                                 @endif
-
-                                {{-- Due date --}}
-                                @if($editingTaskId === $task->id && $fieldBeingEdited === 'due_date')
-                                    <input type="date" wire:model.defer="fieldValue"
+                            </div>
+                            
+                            {{-- Due date - compact display --}}
+                            @if($editingTaskId === $task->id && $fieldBeingEdited === 'due_date')
+                                <div x-data @click.away="$wire.cancelEdit()">     
+                                <input type="date" wire:model.defer="fieldValue"
                                         wire:change="saveEdit"
                                         class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white" />
+                                </div>
                                 @else
                                     <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center cursor-pointer"
                                         wire:click="startEditing({{ $task->id }}, 'due_date', '{{ $task->due_date }}')">
@@ -96,57 +156,90 @@
                                         {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('M d, Y') : 'No due date' }}
                                     </span>
                                 @endif
-                                @if($editingTaskId === $task->id && $fieldBeingEdited === 'priority')
-                                    <select wire:model.defer="fieldValue"
-                                            wire:change="saveEdit"
-                                            wire:keydown.escape="cancelEdit"
-                                            class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white">
-                                        <option value="0">Low</option>
-                                        <option value="1">Medium</option>
-                                        <option value="2">High</option>
-                                    </select>
-                                @else
-                                {{-- Priority badge --}}
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium cursor-pointer
-                                    {{ $task->priority === '0' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : '' }}
-                                    {{ $task->priority === '1' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : '' }}
-                                    {{ $task->priority === '2' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : '' }}"
-                                    wire:click="startEditing({{ $task->id }}, 'priority', '{{ $task->priority ?? 'Low' }}')">
-                                    {{ $task->priority === '0' ? 'Low' : '' }}
-                                    {{ $task->priority === '1' ? 'Medium' : '' }}
-                                    {{ $task->priority === '2' ? 'High' : '' }}
-                                </span>
-                                @endif
-                                </div>
-                             @if($task->status->name === 'In progress')
-                            <div class="mt-3">
-                                <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400 mb-1">
+                            
+                            {{-- Progress bar for in-progress tasks --}}
+                            @if($task->status->name === 'In progress')
+                            <div class="mt-2">
+                                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
                                     <span>Progress</span>
                                     <span>65%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                                    <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 65%"></div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
+                                    <div class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 65%"></div>
                                 </div>
                             </div>
-                             @endif
+                            @endif
                         </div>
                     </div>
                     
-                    <div class="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ml-4">
-                        <!-- <button class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-400 transition-colors duration-200 flex items-center justify-center">
-                            <i class="fas fa-edit text-xs"></i>
-                        </button> -->
-                        <button class="w-8 h-8 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900 dark:text-red-400 transition-colors duration-200 flex items-center justify-center">
-                            <i class="fas fa-trash text-xs"></i>
-                        </button>
+                    {{-- Right side: Status, Priority, Actions --}}
+                    <div class="flex items-center space-x-2 ml-4">
+                        {{-- Status badge --}}
+                        @if($editingTaskId === $task->id && $fieldBeingEdited === 'status_id')
+                        <div x-data @click.away="$wire.cancelEdit()">     
+                            <select wire:model.defer="fieldValue"
+                                wire:change="saveEdit"
+                                class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white">
+                                @foreach(App\Models\Status::all() as $status)
+                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @else
+                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap {{ $task->status->name === 'Completed' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : '' }}
+                            {{ $task->status->name === 'In progress' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300' : '' }}
+                            {{ $task->status->name === 'Pending' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' : '' }}"
+                                wire:click="startEditing({{ $task->id }}, 'status_id', '{{ $task->status_id }}')">
+                                @if($task->status->name === 'Completed')
+                                <i class="fas fa-check mr-1 text-xs"></i>Done
+                                @elseif($task->status->name === 'In progress')
+                                    <i class="fas fa-play mr-1 text-xs"></i>Active
+                                @elseif($task->status->name === 'Pending')
+                                    <i class="fas fa-clock mr-1 text-xs"></i>Pending
+                                @endif
+                            </span>
+                        @endif
+
+                        {{-- Priority badge --}}
+                        @if($editingTaskId === $task->id && $fieldBeingEdited === 'priority')
+                        <div x-data @click.away="$wire.cancelEdit()">    
+                        <select wire:model.defer="fieldValue"
+                                    wire:change="saveEdit"
+                                    class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white">
+                                <option value="0">Low</option>
+                                <option value="1">Med</option>
+                                <option value="2">High</option>
+                            </select>
+                        </div>
+                        @else
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap
+                            {{ $task->priority === '2' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' : '' }}
+                            {{ $task->priority === '1' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300' : '' }}
+                            {{ $task->priority === '0' ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300' : '' }}"
+                            wire:click="startEditing({{ $task->id }}, 'priority', '{{ $task->priority ?? '0' }}')">
+                            @if($task->priority === '2')
+                                <i class="fas fa-exclamation mr-1 text-xs"></i>High
+                            @elseif($task->priority === '1')
+                                <i class="fas fa-minus mr-1 text-xs"></i>Med
+                            @else
+                                <i class="fas fa-arrow-down mr-1 text-xs"></i>Low
+                            @endif
+                        </span>
+                        @endif
+                        
+                        {{-- Actions --}}
+                        <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <button class="w-7 h-7 rounded bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/50 dark:text-red-400 transition-colors duration-150 flex items-center justify-center" title="Delete task">
+                                <i class="fas fa-trash text-xs"></i>
+                            </button>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
     @endforeach
 </div>
-    <div class="mt-4">
-    {{ $tasks->links() }}
-</div>
+    <div class="mt-6">
+        {{ $tasks->links() }}
+    </div>
 </div>

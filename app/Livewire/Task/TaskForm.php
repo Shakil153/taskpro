@@ -141,7 +141,7 @@ class TaskForm extends Component
             // Emit success event and display success message
             
             session()->flash('success', 'Task created successfully!');
-            return redirect()->route('task');
+            $this->dispatch('taskCreated');
 
         } catch (\Exception $e) {
             DB::rollBack();  // Rollback transaction if there's an error

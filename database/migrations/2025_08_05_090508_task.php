@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('status_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category')->constrained()->onDelete('cascade');
             $table->string('project')->nullable();
             $table->enum('priority', ['0', '1', '2'])->default('1');
             $table->date('due_date')->nullable();

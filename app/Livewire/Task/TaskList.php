@@ -20,12 +20,14 @@ class TaskList extends Component
     public $fieldValue = null;
     public $originalValue = null;
 
+    protected $listeners = ['refreshTasks' => 'loadTasks'];
+
     public function boot()
     {
         $this->taskService = app(TaskService::class);
         $this->utilityService = app(UtilityService::class);
     }
-
+    
      public function mount()
     {
         $this->getTasksProperty();
@@ -68,10 +70,14 @@ class TaskList extends Component
 
     public function getTasksProperty()
     {
-        $query = $this->taskService->getAllTasksWithStatus(['status']); // Use correct relation name
+        $query = $this->taskService->getAllTasks('desc',[1,2],['status']); // Use correct relation name
         return $query->paginate($this->utilityService::$displayRecordPerPage);
     }
 
+    public function loadTasks()
+    {
+        $this->getTasksProperty();
+    }
     public function render()
     {
         return view('livewire.task.task-list', [
