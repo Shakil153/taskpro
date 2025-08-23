@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+    <!-- <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
@@ -14,7 +14,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="max-w-7xl mx-auto px-3 py-4">
         <div class="grid grid-cols-1 xl:grid-cols-4 gap-4">

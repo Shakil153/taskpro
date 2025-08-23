@@ -16,7 +16,7 @@ class Tasks extends Model
 
     // Optionally, specify other properties like fillable
     protected $fillable = [
-        'title', 'description', 'status_id','category_id', 'client_id', 'project_id', 'priority', 'due_date'
+        'title', 'description', 'status_id','category_id','project_id', 'priority', 'due_date'
     ];
 
     public function status() {
@@ -26,19 +26,24 @@ class Tasks extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
-    
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+        
     public function clients()
     {
-        return $this->belongsToMany(Client::class, 'task_client', 'task_id', 'client_id');
+        return $this->belongsToMany(Client::class, 'client_task', 'task_id', 'client_id');
     }
 
     public function assignees()
     {
-        return $this->belongsToMany(User::class, 'task_user', 'task_id', 'user_id');
+        return $this->belongsToMany(User::class, 'assignee_task', 'task_id', 'user_id');
     }
     
     public function tags() {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'tag_task', 'task_id', 'tag_id');
     }
     
 }

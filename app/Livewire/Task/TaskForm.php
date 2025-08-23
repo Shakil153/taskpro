@@ -85,15 +85,15 @@ class TaskForm extends Component
                 $project = $this->projectService->createProject(['name' => $this->project]);
                 $projectIds = $project->id;
             }
-
+            // dd($projectIds);
             // Prepare task data
             $data = [
                 'title' => $this->title,
                 'description' => $this->description,
                 'priority' => $this->priority,
                 'due_date' => $this->due_date,
-                'category' => $categoryIds ?? $this->category,
-                'project' => $projectIds ?? $this->project,
+                'category_id' => $categoryIds ?? $this->category,
+                'project_id' => $projectIds ?? $this->project,
                 'status_id' => $statusIds ?? $this->status_id,
             ];
            
@@ -134,14 +134,8 @@ class TaskForm extends Component
             }
 
             DB::commit();  // Commit transaction
-
-            // Reset form data
-            $this->reset(['title', 'description', 'priority', 'due_date', 'category', 'project', 'client', 'tags', 'status_id', 'assignee']);
             
-            // Emit success event and display success message
-            
-            session()->flash('success', 'Task created successfully!');
-            $this->dispatch('taskCreated');
+            $this->dispatch('taskCreated','Task created successfully!');
 
         } catch (\Exception $e) {
             DB::rollBack();  // Rollback transaction if there's an error

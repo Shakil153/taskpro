@@ -27,6 +27,7 @@
     </script>
 
     <!-- Header -->
+     <!-- <div class="max-w-7xl mx-auto p-3">
     <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
@@ -43,6 +44,8 @@
             </div>
         </div>
     </div>
+    </div> -->
+
 
     @if (session()->has('success'))
         <div id="alert-success" 
@@ -279,14 +282,14 @@
     });
 
     // Reinitialize TomSelect when Livewire updates the DOM (like after form submission)
-    Livewire.on('taskFormUpdated', () => {
-        new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
-        new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
-        new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
-        new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
-        new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
-        new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
-    });
+    // Livewire.on('taskFormUpdated', () => {
+    //     new TomSelect('#taskCategory', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    //     new TomSelect('#taskStatus', { create: true, sortField: { direction: 'asc' }, plugins: ['remove_button'] });
+    //     new TomSelect('#taskAssignee', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    //     new TomSelect('#taskTags', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    //     new TomSelect('#taskProject', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    //     new TomSelect('#taskClient', { create: true, sortField: { field: 'text', direction: 'asc' }, plugins: ['remove_button'] });
+    // });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

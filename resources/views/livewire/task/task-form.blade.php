@@ -1,5 +1,11 @@
 <!-- Modal Body -->
 <div>
+<style>
+    .ts-dropdown, .ts-control, .ts-control input{
+        font-size: 11px !important;
+    line-height: 12px!important;
+    }
+</style>
 <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-lg mx-auto">
     <form id="taskForm" wire:submit="taskcreate">
         <div class="space-y-4">
@@ -15,7 +21,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <!-- Priority -->
                 <div>
-                    <label for="priority" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Priority</label>
+                    <!-- <label for="priority" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Priority</label> -->
                     <select id="priority" wire:model.defer="priority"
                         class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="0">🔵 Low</option>
@@ -26,15 +32,15 @@
 
                 <!-- Due Date -->
                 <div>
-                    <label for="due_date" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Due Date</label>
+                    <!-- <label for="due_date" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Due Date</label> -->
                     <input id="due_date" type="date" wire:model.defer="due_date"
                         class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
                 </div>
 
                 <!-- Status -->
                 <div class="col-span-2 sm:col-span-1">
-                    <label for="taskStatus" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Status</label>
-                    <select wire:model.defer="status_id" id="taskStatus"
+                    <!-- <label for="taskStatus" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Status</label> -->
+                    <select wire:model.defer="status_id"
                         class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         @foreach($statusData as $status)
                             <option value="{{ $status->name }}">
@@ -44,6 +50,37 @@
                                 @endif
                                 {{ $status->name }}
                             </option>
+                        @endforeach
+                    </select>
+                </div>
+                 <!-- Status -->
+                <div class="col-span-2 sm:col-span-1">
+                    <!-- <label for="taskCategory" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Category</label> -->
+                    <select wire:model.defer="category"
+                        class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="taskCategory">
+                        <option value="">Select Task Category</option>
+                            @foreach($categoryData as $category)
+                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                            @endforeach
+                    </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <!-- <label for="taskProject" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Project</label> -->
+                    <select wire:model.defer="project"
+                        class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="taskProject">
+                        <option value="">Select Project</option>
+                        @foreach($projectData as $project)
+                            <option value="{{ $project->name }}">{{ $project->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1">
+                    <!-- <label for="taskClient" class="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">Client</label> -->
+                    <select wire:model.defer="client"
+                        class="w-full px-2 py-2 rounded-md bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" id="taskClient" multiple>
+                        <option value="">Select Client</option>
+                        @foreach($clientData as $client)
+                            <option value="{{ $client->name }}">{{ $client->name }}</option>
                         @endforeach
                     </select>
                 </div>
