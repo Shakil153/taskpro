@@ -1,105 +1,33 @@
 <div>
-
+    <style>
+        .editable-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 40px;
+}
+    </style>
+    @php
+    $colors = [
+        'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300',
+        'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+        'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+        'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+        'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
+        'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300',
+    ];
+@endphp
    <div class="space-y-2" id="taskList">
-   <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200 overflow-hidden">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-6">
-            <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-                <h2 class="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
-                    <i class="fas fa-list mr-2 text-indigo-500"></i>
-                    Active Tasks
-                    <span class="ml-2 px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-full">23</span>
-                </h2>
-            </div>
-
-            <!-- Compact Filter Bar -->
-            <div class="p-3 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-600">
-                <div class="flex flex-wrap items-center gap-2">
-                    <!-- Search -->
-                    <div class="relative min-w-48 flex-1 max-w-xs">
-                        <i class="fas fa-search absolute left-2.5 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs"></i>
-                        <input type="text" 
-                               placeholder="Search tasks..." 
-                               class="w-full pl-8 pr-3 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 focus:border-transparent">
-                    </div>
-                    
-                    <!-- Compact Filters -->
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
-                        <option value="">Status</option>
-                        <option value="pending">Pending</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="completed">Completed</option>
-                    </select>
-
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
-                        <option value="">Priority</option>
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
-                        <option value="low">Low</option>
-                    </select>
-
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-24">
-                        <option value="">Project</option>
-                        <option value="website_redesign">Website Redesign</option>
-                        <option value="mobile_app">Mobile App</option>
-                        <option value="marketing_campaign">Marketing Campaign</option>
-                    </select>
-
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
-                        <option value="">Client</option>
-                        <option value="acme_corp">Acme Corp</option>
-                        <option value="tech_solutions">Tech Solutions</option>
-                        <option value="design_studio">Design Studio</option>
-                    </select>
-
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
-                        <option value="">Assignee</option>
-                        <option value="john_doe">John Doe</option>
-                        <option value="jane_smith">Jane Smith</option>
-                        <option value="unassigned">Unassigned</option>
-                    </select>
-
-                    <select class="px-2 py-1.5 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-1 focus:ring-indigo-500 min-w-20">
-                        <option value="">Due Date</option>
-                        <option value="overdue">Overdue</option>
-                        <option value="today">Today</option>
-                        <option value="this_week">This Week</option>
-                        <option value="no_date">No Date</option>
-                    </select>
-                    
-                    <!-- Clear Filters Button -->
-                    <button class="px-2 py-1.5 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors min-w-14">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-
-                <!-- Active Filters Display -->
-                <div class="mt-2 flex flex-wrap gap-1.5" id="activeFilters">
-                    <!-- Sample active filters - these would be dynamically generated -->
-                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
-                        In Progress
-                        <button class="ml-1 hover:bg-indigo-200 dark:hover:bg-indigo-800 rounded p-0.5">
-                            <i class="fas fa-times text-xs"></i>
-                        </button>
-                    </span>
-                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                        High Priority
-                        <button class="ml-1 hover:bg-red-200 dark:hover:bg-red-800 rounded p-0.5">
-                            <i class="fas fa-times text-xs"></i>
-                        </button>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200 overflow-hidden">
+   
     @foreach($tasks as $task)
-    
+    <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md border border-gray-200 dark:border-gray-700 transition-all duration-200 overflow-hidden">
         <div class="p-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3 flex-1 min-w-0">
+                <div class="flex space-x-3 flex-1 min-w-0">
 
                     {{-- Status icon --}}
-                    <div class="flex-shrink-0">
+                    <div class="flex-shrink-0 flex items-center">
                         @if($task->status->name === 'Completed')
                             <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
                                 <i class="fas fa-check text-white text-xs"></i>
@@ -126,12 +54,12 @@
                                         wire:keydown.enter="saveEdit"
                                         wire:keydown.escape="cancelEdit"
                                         wire:blur="saveEdit"
-                                        class="border rounded px-2 py-1 w-full text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white" />
+                                        class="border rounded px-2 py-1 w-full text-sm font-medium text-gray-900 dark:bg-gray-700 dark:text-white h-7" />
                                 </div>
                             @else
                                 <div class="flex items-center group/title-hover">
                                     <h3 class="text-sm font-medium text-gray-900 dark:text-white truncate pr-2">
-                                        <a href="{{ route('task.details', $task->id) }}" class="hover:text-blue-600 dark:hover:text-blue-400">
+                                        <a href="{{ route('task.details', $task->id) }}" class="hover:text-blue-600 dark:hover:text-blue-400 h-7">
                                             {{ $task->title }}
                                         </a>
                                     </h3>
@@ -150,18 +78,18 @@
                             <div x-data @click.away="$wire.cancelEdit()">
                                 <input type="date" wire:model.defer="fieldValue"
                                        wire:change="saveEdit"
-                                       class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white" />
+                                       class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white h-7" />
                             </div>
                         @else
-                            <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center cursor-pointer"
+                            <span class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 cursor-pointer h-7"
                                   wire:click="startEditing({{ $task->id }}, 'due_date', '{{ $task->due_date }}')">
-                                <i class="far fa-calendar mr-1"></i>
+                                <i class="far fa-calendar"></i>
                                 {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('M d, Y') : 'No due date' }}
                             </span>
                         @endif
 
                         {{-- Project, Client, Assignee --}}
-                        <div class="mt-1 flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
+                        <div class="mt-1 flex flex-wrap gap-5 text-xs text-gray-500 dark:text-gray-400 h-7">
 
                             {{-- Project --}}
                             @if($editingTaskId === $task->id && $fieldBeingEdited === 'project_id')
@@ -176,13 +104,13 @@
                                 </div>
                             @else
                                 @if($task->project)
-                                    <span class="flex items-center space-x-1 cursor-pointer"
+                                    <span class="flex items-center gap-1 cursor-pointer"
                                           wire:click="startEditing({{ $task->id }}, 'project_id', '{{ $task->project_id }}')">
                                         <i class="fas fa-folder text-indigo-400"></i>
                                         <span>{{ $task->project->name }}</span>
                                     </span>
                                 @else
-                                    <span class="flex items-center space-x-1 text-gray-400 italic cursor-pointer"
+                                    <span class="flex items-center gap-1 text-gray-400 italic cursor-pointer"
                                           wire:click="startEditing({{ $task->id }}, 'project_id', '')">
                                         <i class="fas fa-folder"></i>
                                         <span>No project assigned</span>
@@ -196,7 +124,7 @@
                                     <select wire:model.defer="selectedClients"
                                             wire:change="saveEdit"
                                             multiple
-                                            class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white" multiple>
+                                            class="border rounded px-2 py-1 text-xs dark:bg-gray-700 dark:text-white">
                                         @foreach(App\Models\Client::get() as $client)
                                             <option value="{{ $client->id }}">{{ $client->name }}</option>
                                         @endforeach
@@ -204,40 +132,22 @@
                                 </div>
                             @else
                                 @if($task->clients->count())
-                                    <span class="flex items-center space-x-1 cursor-pointer"
+                                    <span class="flex items-center gap-1 cursor-pointer"
                                         wire:click="startEditing({{ $task->id }}, 'clients')">
                                         <i class="fas fa-building text-pink-400"></i>
-                                        <span>
-                                            {{ $task->clients->pluck('name')->join(', ') }}
-                                        </span>
+                                        <span>{{ $task->clients->pluck('name')->join(', ') }}</span>
                                     </span>
                                 @else
-                                    <span class="flex items-center space-x-1 text-gray-400 italic cursor-pointer"
+                                    <span class="flex items-center gap-1 text-gray-400 italic cursor-pointer"
                                         wire:click="startEditing({{ $task->id }}, 'clients')">
                                         <i class="fas fa-building"></i>
                                         <span>No clients assigned</span>
                                     </span>
                                 @endif
                             @endif
+                        </div>
 
-                            {{-- Tags --}}
-                            @if($task->tags->count())
-                                <div class="flex flex-wrap gap-1 cursor-pointer"
-                                    wire:click="startEditing({{ $task->id }}, 'tags')">
-                                    @foreach($task->tags as $tag)
-                                        <span class="px-2 py-0.5 rounded-full text-xs bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">
-                                            <i class="fas fa-tags text-blue-400"></i>
-                                            {{ $tag->name }}
-                                        </span>
-                                    @endforeach
-                                </div>
-                            @else
-                                <span class="text-gray-400 italic text-xs cursor-pointer"
-                                    wire:click="startEditing({{ $task->id }}, 'tags')">
-                                    <i class="fas fa-tags text-blue-400"></i>
-                                    No tags
-                                </span>
-                            @endif
+                        <div class="mt-1 flex flex-wrap gap-4 text-xs text-gray-500 dark:text-gray-400 h-7">
 
                             {{-- Category --}}
                             @if($editingTaskId === $task->id && $fieldBeingEdited === 'category_id')
@@ -253,20 +163,17 @@
                                 </div>
                             @else
                                 @if($task->category)
-                                    <span class="flex items-center space-x-1 cursor-pointer"
+                                    <span class="flex items-center gap-1 cursor-pointer"
                                         wire:click="startEditing({{ $task->id }}, 'category_id', '{{ $task->category_id }}')">
-                                        
                                         <span>{{ $task->category->name }}</span>
                                     </span>
                                 @else
-                                    <span class="flex items-center space-x-1 text-gray-400 italic cursor-pointer"
+                                    <span class="flex items-center gap-1 text-gray-400 italic cursor-pointer"
                                         wire:click="startEditing({{ $task->id }}, 'category_id', '')">
-                                        
                                         <span>No category</span>
                                     </span>
                                 @endif
                             @endif
-
 
                             {{-- Assignee --}}
                             @if($editingTaskId === $task->id && $fieldBeingEdited === 'assigned_to')
@@ -282,22 +189,42 @@
                                 </div>
                             @else
                                  @if($task->assignees->count())
-                                    <span class="flex items-center space-x-1 cursor-pointer"
+                                    <span class="flex items-center gap-1 cursor-pointer"
                                           wire:click="startEditing({{ $task->id }}, 'assigned_to', '{{ $task->assigned_to }}')">
                                         <i class="fas fa-user text-green-400"></i>
                                         <span>{{ $task->assignees->pluck('name')->join(', ') }}</span>
                                     </span>
                                 @else
-                                    <span class="flex items-center space-x-1 text-gray-400 italic cursor-pointer"
+                                    <span class="flex items-center gap-1 text-gray-400 italic cursor-pointer"
                                           wire:click="startEditing({{ $task->id }}, 'assigned_to', '')">
                                         <i class="fas fa-user-slash"></i>
                                         <span>Unassigned</span>
                                     </span>
                                 @endif
                             @endif
+                       
+
+                        {{-- Tags --}}
+                       
+                            @if($task->tags->count())
+                                <div class="flex flex-wrap gap-1 cursor-pointer"
+                                    wire:click="startEditing({{ $task->id }}, 'tags')">
+                                    @foreach($task->tags as $index=>$tag)
+                                    <span class="px-2 py-0.5 font-bold rounded-full text-xs flex items-center gap-1 {{ $colors[$index % count($colors)] }}">
+                                        {{ $tag->name }}
+                                    </span>
+                                    @endforeach
+                                </div>
+                            @else
+                                <span class="text-gray-400 italic text-xs cursor-pointer flex items-center gap-1"
+                                    wire:click="startEditing({{ $task->id }}, 'tags')">
+                                    <!-- <i class="fas fa-tags text-red-400"></i> -->
+                                    No tags
+                                </span>
+                            @endif
                         </div>
 
-                        {{-- Progress (only for in-progress tasks) --}}
+                        {{-- Progress --}}
                         @if($task->status->name === 'In progress')
                             <div class="mt-2">
                                 <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
@@ -315,7 +242,7 @@
                 {{-- Right side: Status, Priority, Delete --}}
                 <div class="flex items-center space-x-2 ml-4">
 
-                    {{-- Status badge --}}
+                    {{-- Status --}}
                     @if($editingTaskId === $task->id && $fieldBeingEdited === 'status_id')
                         <div x-data @click.away="$wire.cancelEdit()">
                             <select wire:model.defer="fieldValue"
@@ -327,22 +254,22 @@
                             </select>
                         </div>
                     @else
-                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap
+                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap
                             {{ $task->status->name === 'Completed' ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : '' }}
                             {{ $task->status->name === 'In progress' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300' : '' }}
                             {{ $task->status->name === 'Pending' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' : '' }}"
                             wire:click="startEditing({{ $task->id }}, 'status_id', '{{ $task->status_id }}')">
                             @if($task->status->name === 'Completed')
-                                <i class="fas fa-check mr-1 text-xs"></i>Done
+                                <i class="fas fa-check text-xs"></i> Done
                             @elseif($task->status->name === 'In progress')
-                                <i class="fas fa-play mr-1 text-xs"></i>Active
+                                <i class="fas fa-play text-xs"></i> Active
                             @elseif($task->status->name === 'Pending')
-                                <i class="fas fa-clock mr-1 text-xs"></i>Pending
+                                <i class="fas fa-clock text-xs"></i> Pending
                             @endif
                         </span>
                     @endif
 
-                    {{-- Priority badge --}}
+                    {{-- Priority --}}
                     @if($editingTaskId === $task->id && $fieldBeingEdited === 'priority')
                         <div x-data @click.away="$wire.cancelEdit()">
                             <select wire:model.defer="fieldValue"
@@ -354,17 +281,17 @@
                             </select>
                         </div>
                     @else
-                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap
+                        <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium cursor-pointer whitespace-nowrap
                             {{ $task->priority === '2' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' : '' }}
                             {{ $task->priority === '1' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300' : '' }}
                             {{ $task->priority === '0' ? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300' : '' }}"
                             wire:click="startEditing({{ $task->id }}, 'priority', '{{ $task->priority ?? '0' }}')">
                             @if($task->priority === '2')
-                                <i class="fas fa-exclamation mr-1 text-xs"></i>High
+                                <i class="fas fa-exclamation text-xs"></i> High
                             @elseif($task->priority === '1')
-                                <i class="fas fa-minus mr-1 text-xs"></i>Med
+                                <i class="fas fa-minus text-xs"></i> Med
                             @else
-                                <i class="fas fa-arrow-down mr-1 text-xs"></i>Low
+                                <i class="fas fa-arrow-down text-xs"></i> Low
                             @endif
                         </span>
                     @endif
@@ -378,11 +305,11 @@
                 </div>
             </div>
         </div>
-   
-@endforeach
- </div>
-</div>
-    <div class="mt-6">
-        {{ $tasks->links() }}
-    </div>
+   </div>
+   @endforeach
+ 
+   </div>
+   <div class="mt-6">
+       {{ $tasks->links() }}
+   </div>
 </div>

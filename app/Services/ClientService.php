@@ -14,7 +14,7 @@ class ClientService
 
     public function createClient(array $data)
     {
-        return Client::create($data);
+        return Client::firstOrCreate($data);
     }
 
     public function updateClient(Client $client, array $data)

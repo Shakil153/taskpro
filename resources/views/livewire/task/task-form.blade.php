@@ -6,7 +6,7 @@
     line-height: 12px!important;
     }
 </style>
-<div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-lg mx-auto">
+<div class="bg-white dark:bg-gray-900 p-4 rounded-lg mx-auto">
     <form id="taskForm" wire:submit="taskcreate">
         <div class="space-y-4">
             <!-- Title Input -->

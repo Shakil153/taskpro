@@ -32,7 +32,6 @@ class TaskFormModal extends Component
     protected $projectService;
     protected $clientService;
 
-
     public function __construct()
     {
         $this->taskService = app(TaskService::class);
@@ -52,6 +51,7 @@ class TaskFormModal extends Component
         $this->assigneeData = User::all(); // Assuming you have a User model to fetch all users
         $this->tagsData = $this->tagService->getAllTags();
     }
+
 
     public function taskcreate()
     {
@@ -85,15 +85,15 @@ class TaskFormModal extends Component
                 $project = $this->projectService->createProject(['name' => $this->project]);
                 $projectIds = $project->id;
             }
-
+            // dd($projectIds);
             // Prepare task data
             $data = [
                 'title' => $this->title,
                 'description' => $this->description,
                 'priority' => $this->priority,
                 'due_date' => $this->due_date,
-                'category' => $categoryIds ?? $this->category,
-                'project' => $projectIds ?? $this->project,
+                'category_id' => $categoryIds ?? $this->category,
+                'project_id' => $projectIds ?? $this->project,
                 'status_id' => $statusIds ?? $this->status_id,
             ];
            

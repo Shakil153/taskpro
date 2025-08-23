@@ -14,7 +14,7 @@ class CategoryService
 
     public function createCategory(array $data)
     {
-        return Category::create($data);
+        return Category::firstOrCreate($data);
     }
 
     public function updateCategory(Category $category, array $data)
