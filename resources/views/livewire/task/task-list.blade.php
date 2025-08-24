@@ -73,7 +73,11 @@
                             @endif
                         </div>
 
-                        {{-- Due Date --}}
+                       
+
+                        {{-- Project, Client, Assignee --}}
+                        <div class="mt-1 flex flex-wrap gap-5 text-xs text-gray-500 dark:text-gray-400 h-7">
+                             {{-- Due Date --}}
                         @if($editingTaskId === $task->id && $fieldBeingEdited === 'due_date')
                             <div x-data @click.away="$wire.cancelEdit()">
                                 <input type="date" wire:model.defer="fieldValue"
@@ -87,9 +91,6 @@
                                 {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('M d, Y') : 'No due date' }}
                             </span>
                         @endif
-
-                        {{-- Project, Client, Assignee --}}
-                        <div class="mt-1 flex flex-wrap gap-5 text-xs text-gray-500 dark:text-gray-400 h-7">
 
                             {{-- Project --}}
                             @if($editingTaskId === $task->id && $fieldBeingEdited === 'project_id')
